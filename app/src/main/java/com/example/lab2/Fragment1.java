@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.transition.TransitionInflater;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,10 +42,15 @@ public class Fragment1 extends Fragment {
     public static Fragment1 newInstance(String param1, String param2) {
         Fragment1 fragment = new Fragment1();
         Bundle args = new Bundle();
+
+
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
+
+
+
     }
 
     @Override
@@ -53,6 +59,11 @@ public class Fragment1 extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+
+
+            TransitionInflater inflater2 = TransitionInflater.from(requireContext());
+            setExitTransition(inflater2.inflateTransition(R.transition.fade));
+            setEnterTransition(inflater2.inflateTransition(R.transition.slide_right));
         }
     }
 

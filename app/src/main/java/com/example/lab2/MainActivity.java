@@ -7,7 +7,10 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.transition.Transition;
+import android.transition.TransitionInflater;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -48,6 +51,7 @@ public class MainActivity extends FragmentActivity implements Fragment1.OnButton
             sequence = savedInstanceState.getIntArray("SEQUENCE");
         }
 
+
     }
 
     protected void onInstanceState(@NonNull Bundle outState){
@@ -67,6 +71,7 @@ public class MainActivity extends FragmentActivity implements Fragment1.OnButton
         for(int i = 0; i < 4; i++) sequence[i] = s.get(i);
 
         newFragments();
+
 
     }
 
@@ -151,6 +156,19 @@ public class MainActivity extends FragmentActivity implements Fragment1.OnButton
 
         transaction.addToBackStack(null);
         transaction.commit();
+
+
+        /*Fragment fragment = new Fragment1();
+        getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(
+                        R.anim.slide_in,  // enter
+                        R.anim.fade_out,  // exit
+                        R.anim.fade_in,   // popEnter
+                        R.anim.slide_out  // popExit
+                )
+                .replace(R.id.button_hide, fragment)
+                .addToBackStack(null)
+                .commit();*/
 
     }
 }

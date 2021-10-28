@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.transition.TransitionInflater;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,9 @@ public class Fragment4 extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        TransitionInflater inflater2 = TransitionInflater.from(requireContext());
+        setExitTransition(inflater2.inflateTransition(R.transition.fade));
+        setEnterTransition(inflater2.inflateTransition(R.transition.slide_right));
     }
 
     @Override
@@ -35,13 +39,10 @@ public class Fragment4 extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_4, container, false);
 
-        //1.
         edit = view.findViewById(R.id.editTextNumber);
 
-        //2.
         fragsData = new ViewModelProvider(requireActivity()).get(FragsData.class);
 
-        //3.
         numberObserver = new Observer<Integer>() {
             @Override
             public void onChanged(Integer newInteger) {
@@ -50,10 +51,8 @@ public class Fragment4 extends Fragment {
             }
         };
 
-        //4.
         fragsData.counter.observe(getViewLifecycleOwner(), numberObserver);
 
-        //5.
         textWatcher = new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

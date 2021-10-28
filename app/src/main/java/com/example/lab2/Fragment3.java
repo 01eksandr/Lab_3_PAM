@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.transition.TransitionInflater;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,10 @@ public class Fragment3 extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        TransitionInflater inflater2 = TransitionInflater.from(requireContext());
+        setExitTransition(inflater2.inflateTransition(R.transition.fade));
+        setEnterTransition(inflater2.inflateTransition(R.transition.slide_right));
     }
 
     @Override
